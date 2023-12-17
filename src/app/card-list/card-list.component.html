@@ -1,0 +1,8 @@
+<app-card-item [selectedUser]="selectedUser" class="top-0 absolute left-64"></app-card-item>
+<div class="mx-12 my-12">
+    <div *ngFor="let card of cardsUser" (click)="onClick(card)" class="flex flex-col border-solid border-2 border-cyan-200 text-white w-56 mt-10">
+        <p class="text-center pt-6">{{ card.name }}</p>
+        <p class="block text-center pb-6">{{ card.email }}</p>
+    </div>
+</div>
+
