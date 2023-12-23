@@ -1,9 +1,24 @@
-<div class="mx-12 my-12">
-    <div class="flex flex-col border-solid border-2 border-cyan-200 text-white w-56 mt-10">
-        <p class="text-center pt-6">Id: {{ selectedUser.id }}</p>
-        <p class="text-center">Name: {{ selectedUser.name }}</p>
-        <p class="text-center">Surname: {{ selectedUser.surname }}</p>
-        <p class="text-center">Age: {{ selectedUser.age }}</p>
-        <p class="block text-center pb-6">Email: {{ selectedUser.email }}</p>
+<div *ngIf="selectedUser" class="mx-12 my-12">
+    <div class="flex flex-col border-solid border-2 border-cyan-200 text-white mt-10">
+        <div class="flex flex-row justify-center pt-6">
+            <label for="id">Id: </label>
+            <input type="number" name="id" [(ngModel)]="selectedUser.id" value="{{ selectedUser.id }}" class="text-center bg-black w-2/3 outline-none"/>
+        </div>
+        <div class="flex flex-row justify-center">
+            <label for="name">Name: </label>
+            <input type="text" name="name" [(ngModel)]="selectedUser.name" value="{{ selectedUser.name }}" class="text-center bg-black w-2/3 outline-none"/>
+        </div>
+        <div class="flex flex-row justify-center">
+            <label for="surname">Surname: </label>
+            <input type="text" name="surname" [(ngModel)]="selectedUser.surname" value="{{ selectedUser.surname }}" class="text-center bg-black w-2/3 outline-none"/>
+        </div>
+        <div class="flex flex-row justify-center">
+            <label for="age">Age: </label>
+            <input type="number" name="age" [(ngModel)]="selectedUser.age" value="{{ selectedUser.age }}" class="text-center bg-black w-2/3 outline-none"/>
+        </div>
+        <div class="flex flex-row justify-center">
+            <label for="email">Email: </label>
+            <input type="email" name="email" [(ngModel)]="selectedUser.email" value="{{ selectedUser.email }}" class="block text-center pb-6 bg-black w-2/3 outline-none"/>
+        </div>
     </div>
 </div>

@@ -1,8 +1,12 @@
 <app-card-item [selectedUser]="selectedUser" class="top-0 absolute left-64"></app-card-item>
 <div class="mx-12 my-12">
-    <div *ngFor="let card of cardsUser" (click)="onClick(card)" class="flex flex-col border-solid border-2 border-cyan-200 text-white w-56 mt-10">
-        <p class="text-center pt-6">{{ card.name }}</p>
-        <p class="block text-center pb-6">{{ card.email }}</p>
+    <div *ngFor="let card of cardsUser" class="flex flex-col border-solid border-2 border-cyan-200 text-white w-56 mt-10">
+        <p class="text-center pt-4">{{ card.name }}</p>
+        <p class="block text-center pb-4">{{ card.email }}</p>
+        <div class="flex justify-center pb-3">
+            <button (click)="onEdit(card)" class="border-solid border-2 py-1 px-2 mr-2">Edit</button>
+            <button (click)="onDelete(card.id)" class="border-solid border-2 py-1 px-2 ml-2">Delete</button>
+        </div>
     </div>
 </div>
 

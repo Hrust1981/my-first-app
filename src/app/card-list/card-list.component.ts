@@ -23,9 +23,14 @@ export class CardListComponent {
 
   selectedUser!: User;
 
-  onClick(user: User) {
+  onEdit(user: User) {
     this.selectedUser = user;
     console.log(this.selectedUser);
+  }
+  
+  onDelete(id: number) {
+    var index = this.cardsUser.map(function(e) {return e.id}).indexOf(id);
+    this.cardsUser.splice(index, 1);
   }
 
 }
