@@ -1,5 +1,5 @@
 import { Component, Input, NgModule } from '@angular/core';
-import { User } from '../model/user.model';
+import { User } from '../../model/user.model';
 import { CardListComponent } from "../card-list/card-list.component";
 import { NgIf } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';

@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { CardListComponent } from "./card-list/card-list.component";
-import { CardItemComponent } from './card-item/card-item.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CardModule } from './card/card.module';
 
 @NgModule({
     declarations: [
@@ -16,9 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
-        FormsModule,
-        CardListComponent,
-        CardItemComponent,
+        CardModule,
         AppRoutingModule,
         HttpClientModule
     ]
