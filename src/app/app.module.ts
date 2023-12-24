@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CardListComponent } from "./card-list/card-list.component";
 import { CardItemComponent } from './card-item/card-item.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
         FormsModule,
         CardListComponent,
         CardItemComponent,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule
     ]
 })
 export class AppModule { }

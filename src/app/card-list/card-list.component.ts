@@ -1,8 +1,10 @@
 import { NgFor } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { User } from '../model/user.model';
 import { RouterLink } from '@angular/router';
 import { CardItemComponent } from "../card-item/card-item.component";
+import { CardsService } from '../services/cards.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-card-list',
@@ -11,17 +13,24 @@ import { CardItemComponent } from "../card-item/card-item.component";
     styleUrl: './card-list.component.css',
     imports: [NgFor, RouterLink, CardItemComponent]
 })
-export class CardListComponent {
+export class CardListComponent implements OnInit, OnDestroy {
 
-  cardsUser: User[] = [
-    {id: 1, name: 'John', surname: 'Johnovich', age: 20, email: 'john@mail.com'},
-    {id: 2, name: 'Den', surname: 'Denovich', age: 22, email: 'den@mail.com'},
-    {id: 3, name: 'Mark', surname: 'Markovich', age:32, email: 'mark@mail.com'},
-    {id: 4, name: 'Yakov', surname: 'Yakovlevich', age: 19, email: 'yakov@mail.com'},
-    {id: 5, name: 'Ben', surname: 'Benovich', age: 35, email: 'ben@mail.com'},
-  ]
-
+  cardsUser: User[] = [];
   selectedUser!: User;
+  private unsubscribe$ = new Subject<void>();
+
+  constructor(
+    private readonly cardsService: CardsService
+  ) {}
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  ngOnInit(): void {
+    this.getAllUsers();
+  }
 
   onEdit(user: User) {
     this.selectedUser = user;
@@ -29,8 +38,31 @@ export class CardListComponent {
   }
   
   onDelete(id: number) {
-    var index = this.cardsUser.map(function(e) {return e.id}).indexOf(id);
-    this.cardsUser.splice(index, 1);
+    this.deleteCard(id);
+  }
+
+  getAllUsers() {
+    this.cardsService.getAllUsers()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(
+      (res) => {
+        console.log('res', res);
+        this.cardsUser = res;
+      },
+      (err) => console.error('Error', err)
+    );
+  }
+
+  deleteCard(id: number) {
+    this.cardsService.deleteUser(id)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(
+      (res) => {
+        console.log('res', res);
+        this.getAllUsers();
+      },
+      (err) => console.error('Error', err)
+    );
   }
 
 }
