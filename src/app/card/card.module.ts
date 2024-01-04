@@ -10,7 +10,7 @@ import { CardItemComponent } from './card-item/card-item.component';
   imports: [
     CommonModule,
     CardListComponent,
-    CardItemComponent,
+    CardItemComponent
   ],
   exports: [
     CardListComponent,
